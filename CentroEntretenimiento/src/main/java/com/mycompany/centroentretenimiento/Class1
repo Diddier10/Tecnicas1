@@ -1,0 +1,15 @@
+//El centro de entretenimiento acaba de contratar a dos secretarias y un portero, se desea crear estos funcionarios dentro del
+//actual
+
+
+
+//Levantando requisitos, Elicitacion -> Historias de usuario
+//2  -> Diagrama de clases, monita llegando a preguntarle a la recepcionita ejemplo -> Figma Mockup En un mes vamos a utilizar figma entonces Hola
+//Programa
+/*
+1) yo como entrenador quiero conocer la actividad física y el peso de mis clientes, para diseñar el plan de ejercicios 
+Criterios de aceptación: 
+- El plan de entrenamiento sea por cada cliente y dure 30 días 
+- que pueda consultar todos lo planes de entrenamientos de todos mis cliente
+
+*/
