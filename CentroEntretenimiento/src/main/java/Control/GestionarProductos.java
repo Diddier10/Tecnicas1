@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Ingresar un producto
  * Buscar un producto
- * @author Ali
+ * @author Ali Garshasebi
  */
 public class GestionarProductos {
     ArrayList<Persona> listaPersonas;
@@ -27,9 +27,7 @@ public class GestionarProductos {
         producto.setDescripcion(lectura.leerString("Ingrese la descripción: "));
         return producto;
     }
-
-    public GestionarProductos() {
-    }
+    
     public void registrarPersona() {
         String dni, apellidos, nombres, sexo;
         int edad;
