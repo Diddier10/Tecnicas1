@@ -4,6 +4,7 @@
  */
 package Control;
 
+import Model.Cliente;
 import Model.Servicio;
 import Util.Lectura;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Scanner;
  * @author Ali
  */
 public class GestionarServicios {
-    ArrayList<Servicio> listaServicios;
+    ArrayList<Servicio> listaServicios= new ArrayList<>();
     private Lectura lectura = new Lectura();
     Servicio servicio= new Servicio(); 
     public Servicio crearServicio(){
@@ -44,11 +45,11 @@ public class GestionarServicios {
         System.out.print("Peso: ");
         peso = entrada.nextDouble();
         Servicio servicio = new Servicio(dni, apellidos, nombres, sexo, edad, (float) peso);
-       
+        
     //Validar inserción , boolean 
-    }*/
+    }
 
-    /*public void buscarServicio() {
+    public void buscarServicio() {
         String dni;
         int indice;
         Scanner entrada = new Scanner(System.in);
@@ -63,9 +64,9 @@ public class GestionarServicios {
         } else {
             System.out.println("La persona no se encuentra");
         }
-    }*/
+    }
     
-    /*public void buscarServicio(String basura) {
+    public void buscarServicio(String basura) {
         String nombre, apellidos;
         int indice;
         Scanner entrada = new Scanner(System.in);
@@ -81,10 +82,10 @@ public class GestionarServicios {
         } else {
             System.out.println("La persona no se encuentra");
         }
-    }*/
+    }
 
 
-    /*public void eliminarServicio() {
+    public void eliminarServicio() {
         String dni;
         int indice;
         Scanner entrada = new Scanner(System.in);
@@ -98,9 +99,9 @@ public class GestionarServicios {
         } else {
             System.out.println("La persona no se encuentra");
         }
-    }*/
+    }
 
-    /*public void mostrarServicios() {
+    public void mostrarServicios() {
         if (listaServicios.size() > 0) {
             for (Servicio servicio : listaServicios) {
                 System.out.println(servicio);
@@ -115,4 +116,5 @@ public class GestionarServicios {
                 -> persona1.getNombres().compareTo(persona2.getNombres()));
         mostrarServicios();
     }*/
+   
 }

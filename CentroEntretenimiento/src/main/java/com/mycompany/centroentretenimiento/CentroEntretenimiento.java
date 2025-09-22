@@ -8,6 +8,7 @@ import Model.*;
 import Control.GestionarProductos;
 import Control.GestionarCliente;
 import Control.GestionarServicios;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -21,11 +22,11 @@ public class CentroEntretenimiento {
     private static GestionarProductos gp = new GestionarProductos();
     static GestionarCliente gc = new GestionarCliente();
     private static GestionarServicios gh= new GestionarServicios();
-    
+    static ArrayList<Cliente> listaClientes = new ArrayList<>();
+    static ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
     
     public static void menu(){
         int opcion;
-        //proyectoPersonas.listaPersonas = new ArrayList();
         CentroEntretenimiento ce= new CentroEntretenimiento();
         Scanner entrada = new Scanner(System.in); //Cambiar por lectura desde la clase Lectura
         do {
@@ -34,7 +35,7 @@ public class CentroEntretenimiento {
             System.out.println("[2] Verificar estado de cuenta");
             //System.out.println("[2] Buscar persona por identificación");
             System.out.println("[3] Conocer a mis clientes como entrenador");
-            System.out.println("[4] Eliminar persona");
+            System.out.println("[4] Consultar planes de entrenamiento de mis clientes");
             System.out.println("[5] Eliminar persona por nombre");
             System.out.println("[6] Ordenar por apellidos");
             System.out.println("[7] Ordenar por nombre");
@@ -53,13 +54,14 @@ public class CentroEntretenimiento {
                     gc.estadoDeuda(gc.crearCliente());
                     break;
                 case 3:
-                    GestionarCliente entrenador = new GestionarCliente();
+                    //GestionarCliente entrenador = new GestionarCliente();
                     //entrenador.crearCliente();
-                    entrenador.mostrarClientes();
+                    gc.mostrarClienteSeleccionado();
                     //proyectoPersonas.buscarPersona();
                     //proyectoPersonas.buscarPersona("Hola");
                     break;
                 case 4:
+                   gc.mostrarPlanesDeEntrenamiento(listaClientes, listaPlanes);
                     //proyectoPersonas.eliminarPersona();
                     break;
                 case 5:
@@ -79,8 +81,8 @@ public class CentroEntretenimiento {
     } 
     public static void main(String[] args) {
         menu();
-        Cliente cliente= gc.crearCliente();
-        Servicio servicio= gh.crearServicio();
+        //Cliente cliente= gc.crearCliente();
+        //Servicio servicio= gh.crearServicio();
         
         
     }//Diddier

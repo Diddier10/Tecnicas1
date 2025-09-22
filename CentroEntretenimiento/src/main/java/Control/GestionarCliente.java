@@ -6,8 +6,11 @@ package Control;
 import Util.Lectura;
 import Model.Cliente;
 import Model.Persona;
+import Model.PlanEntrenamiento;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -16,6 +19,9 @@ import java.util.Scanner;
  */
 public class GestionarCliente {
     ArrayList<Cliente> listaClientes= new ArrayList<>();
+    private Map<Cliente, PlanEntrenamiento> planesPorCliente = new HashMap<>();
+    ArrayList<Cliente> listaClientes1 = new ArrayList<>();
+    ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
     private Lectura lectura = new Lectura();
     Persona persona= new Persona();
     public Cliente crearCliente(){
@@ -26,9 +32,13 @@ public class GestionarCliente {
         cliente.setDirección(lectura.leerString("Dirección:"));
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
+        cliente.setPeso(lectura.leerFloat("Peso:"));
         cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (S/N):"));
         cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
         cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, ¿Cuantos minutos a la semana?:"));
+        listaClientes.add(cliente);
+        PlanEntrenamiento plan = new PlanEntrenamiento(cliente); // Usa la info del cliente para el plan
+        planesPorCliente.put(cliente, plan);
         listaClientes.add(cliente);
         return cliente;
     }
@@ -93,18 +103,39 @@ public class GestionarCliente {
     public void mostrarClientes() {
         if (listaClientes.size() > 0) {
             for (Cliente cliente : listaClientes) {
-                System.out.println(persona);
+                System.out.println(cliente);
             }
         } else {
             System.out.println("No existen personas registradas");
         }
     }
-    
-    
-    public void ordenarPorNombre() {
-        Collections.sort(listaClientes, (Persona persona1, Persona persona2)
-                -> persona1.getNombres().compareTo(persona2.getNombres()));
-        mostrarClientes();
+    public void mostrarClienteSeleccionado() {
+        if (listaClientes.size() == 0) {
+            System.out.println("No existen personas registradas");
+            return;
+        }
+
+        // 1. Mostrar lista con números
+        for (int i = 0; i < listaClientes.size(); i++) {
+            Cliente c = listaClientes.get(i);
+            System.out.println((i + 1) + ". " + c.getNombres() + " " + c.getApellidos());
+        }
+
+        // 2. Pedir al entrenador que elija
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese la identificación del cliente que desea ver: ");
+        int opcion = sc.nextInt();
+
+        // 3. Validar y mostrar solo actividad y peso
+        if (opcion > 0 && opcion <= listaClientes.size()) {
+            Cliente seleccionado = listaClientes.get(opcion - 1);
+            System.out.println("===== INFORMACIÓN DEL CLIENTE =====");
+            System.out.println("Actividad Física: " + seleccionado.getActividadFisica());
+            System.out.println("Peso: " + seleccionado.getPeso() + " kg");
+            System.out.println("==================================");
+        } else {
+            System.out.println("Número inválido.");
+        }
     }
      //Buscarplan(int id, nombre)
      
@@ -125,5 +156,22 @@ public class GestionarCliente {
         }
         return 0;
     } 
+    public void mostrarPlanesDeEntrenamiento(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes) {
+    if (listaClientes.size() == 0) {
+        System.out.println("No hay clientes registrados.");
+        return;
+    }
+    for (int i = 0; i < listaClientes.size(); i++) {
+        Cliente c = listaClientes.get(i);
+        PlanEntrenamiento plan = listaPlanes.get(i);
+        System.out.println("Cliente: " + c.getNombres() + " " + c.getApellidos());
+        System.out.println("Plan de entrenamiento de 30 días:");
+        ArrayList<String> ejercicios = plan.getEjerciciosPorDia();
+        for (int dia = 0; dia < ejercicios.size(); dia++) {
+            System.out.println("Día " + (dia + 1) + ": " + ejercicios.get(dia));
+        }
+        System.out.println("--------------------------");
+    }
+}
 }
 //EqualsignoreCase solamente funciona entre String 

@@ -28,6 +28,11 @@ public class Servicio {
         this.id = id;
     }
 
+    public Servicio(int id) {
+        this.id = id;
+    }
+    
+
     public String getNombres() {
         return nombres;
     }

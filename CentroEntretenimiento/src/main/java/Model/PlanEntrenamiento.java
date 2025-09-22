@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alima
@@ -21,6 +23,10 @@ public class PlanEntrenamiento {
         this.rutina = rutina;
     }
 
+    public PlanEntrenamiento(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }
@@ -55,6 +61,10 @@ public class PlanEntrenamiento {
         sb.append('}');
         return sb.toString();
     }
-    
+
+    public ArrayList<String> getEjerciciosPorDia() {
+        ArrayList<String> getEjerciciosPorDia = null;
+        return getEjerciciosPorDia;
+    }
     
 }
