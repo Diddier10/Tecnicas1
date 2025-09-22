@@ -21,19 +21,18 @@ public class CentroEntretenimiento {
     private static GestionarProductos gp = new GestionarProductos();
     private static GestionarCliente gc = new GestionarCliente();
     private static GestionarServicios gh= new GestionarServicios();
-    Cliente cliente= gc.crearCliente();
     
     
     public static void menu(){
         int opcion;
         //proyectoPersonas.listaPersonas = new ArrayList();
         CentroEntretenimiento ce= new CentroEntretenimiento();
-        
         Scanner entrada = new Scanner(System.in); //Cambiar por lectura desde la clase Lectura
         do {
             System.out.println("\nLISTA DE PERSONAS:");
             System.out.println("[1] Verificar estado de cuenta");
-            System.out.println("[2] Buscar persona por identificación");
+            System.out.println("[2] Conocer a mis clientes como entrenador");
+            //System.out.println("[2] Buscar persona por identificación");
             System.out.println("[3] Buscar persona por nombre y apellidos");
             System.out.println("[4] Eliminar persona");
             System.out.println("[5] Eliminar persona por nombre");
@@ -45,10 +44,14 @@ public class CentroEntretenimiento {
             opcion = entrada.nextInt();
             switch (opcion) {
                 case 1:
-                    gc.crearCliente("Ingrese la identificacion del cliente: "); //Cliente temporal, para poder comparar Cliente con Cliente
-                    gc.estadoDeuda(gc.crearCliente("Ingrese la identificacion del cliente: "));
+                    //Cliente , para poder comparar Cliente con Cliente
+                    
+                    gc.estadoDeuda(gc.crearCliente());
                     break;
                 case 2:
+                    GestionarCliente entrenador = new GestionarCliente();
+                    entrenador.crearCliente();
+                    entrenador.mostrarClientes();
                     //proyectoPersonas.buscarPersona();
                     break;
                 case 3:
@@ -73,7 +76,6 @@ public class CentroEntretenimiento {
         } while (opcion != 9);
     } 
     public static void main(String[] args) {
-        int opcion;
         menu();
         Cliente cliente= gc.crearCliente();
         Servicio servicio= gh.crearServicio();

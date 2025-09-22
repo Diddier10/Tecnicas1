@@ -4,6 +4,7 @@
  */
 package Control;
 
+import Model.Cliente;
 import Model.Empleado;
 import Util.Lectura;
 import java.util.ArrayList;
@@ -60,5 +61,8 @@ public class GestionarEmpleados {
         Collections.sort(listaEmpleados, (Empleado empleado1, Empleado empleado2)
                  -> empleado1.getNombres().compareTo(empleado2.getNombres()));
         mostrarEmpleados();
-    }    
+    }   
+    /*public Cliente entrenadorCliente(){
+        
+    }*/
 }

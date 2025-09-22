@@ -20,26 +20,25 @@ public class GestionarCliente {
     Persona persona= new Persona();
     public Cliente crearCliente(){
         Cliente cliente = new Cliente();
-        System.out.println("A continuacion los datos del empleado:");
+        System.out.println("A continuacion los datos del cliente:");
         cliente.setIdentificación(lectura.leerString("Identificación:"));
         cliente.setNombres(lectura.leerString("Nombre"));
-        cliente.setDirección(lectura.leerString("Telefono"));
-        cliente.setTelefono(lectura.leerInt("Telefono"));
-        cliente.setEstratoSE(lectura.leerInt("Estrato"));
-        cliente.setPracticaActividadFisica(lectura.leerBoolean("JAJAJAJAJA"));
-        cliente.setActividadFisica(lectura.leerString("Realiza actividad fisica? (S/N):"));
+        cliente.setDirección(lectura.leerString("Dirección:"));
+        cliente.setTelefono(lectura.leerInt("Telefono:"));
+        cliente.setEstratoSE(lectura.leerInt("Estrato:"));
+        cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (S/N):"));
+        cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
         cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, ¿Cuantos minutos a la semana?:"));
         listaClientes.add(cliente);
         return cliente;
     }
-    public Cliente crearCliente(String mensaje){
+    /*public Cliente crearCliente(String mensaje){
         Cliente cliente = new Cliente();
         System.out.println(mensaje);
         cliente.setIdentificación(lectura.leerString("Identificación: "));
         listaClientes.add(cliente);
         return cliente;
-    }
-
+    }*/
     public void buscarCliente() {
         String identificacion;
         int indice;
@@ -126,6 +125,5 @@ public class GestionarCliente {
         }
         return 0;
     } 
-    
 }
 //EqualsignoreCase solamente funciona entre String 

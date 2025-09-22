@@ -10,5 +10,6 @@ Model\Servicio.class
 com\mycompany\centroentretenimiento\CentroEntretenimiento.class
 Control\GestionarServicios.class
 Control\Pago.class
+Model\PlanEntrenamiento.class
 Model\Factura.class
 Model\Persona.class
