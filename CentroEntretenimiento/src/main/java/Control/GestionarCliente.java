@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Alima
+ * @author Alimateo Garshasebi
  */
 public class GestionarCliente {
     ArrayList<Cliente> listaClientes;
