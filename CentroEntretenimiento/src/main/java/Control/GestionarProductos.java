@@ -22,7 +22,7 @@ public class GestionarProductos {
     Producto producto = new Producto();
     public Producto crearProducto(){
         System.out.println("A continuación ingrese los datos del producto.");
-        producto.setCodigo(lectura.leerInt("Igrese el código: "));
+        producto.setCodigo(lectura.leerString("Ingrese el código: "));
         producto.setDescripcion(lectura.leerString("Ingrese el nombre: "));
         producto.setDescripcion(lectura.leerString("Ingrese la descripción: "));
         listaProductos.add(producto); //Validar inserción , boolean 
@@ -36,7 +36,7 @@ public class GestionarProductos {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Ingrese el codigo del producto a buscar: ");
         codigo = entrada.next();
-        Producto producto = new Producto(codigo);
+        producto = new Producto(codigo);
         indice = listaProductos.indexOf(producto);
         System.out.println("Estoy buscando una persona con dni=1"+indice);
         if (indice != -1) { //Lógica negativa.
@@ -57,9 +57,9 @@ public class GestionarProductos {
         indice = listaProductos.indexOf(persona);
         if (indice != -1) {
             producto = listaProductos.remove(indice);
-            System.out.println("Persona eliminada: " + persona);
+            System.out.println("Producto eliminada: " + persona);
         } else {
-            System.out.println("La persona no se encuentra");
+            System.out.println("El producto no se encuentra");
         }
     }
     

@@ -25,8 +25,10 @@ public class GestionarEmpleados {
         empleado.setTelefono(lectura.leerInt("Telefono"));
         empleado.setAntiguedad(lectura.leerInt("Numero de años en la empresa"));
         empleado.setCargo(lectura.leerString("Cargo en la empresa"));
+        listaEmpleados.add(empleado);
         return empleado;
     }
+    //HOLAAAAA ESTE ES UN COMENTARIO
     
     public void eliminarEmpleado() {
         String identificacion ;
@@ -44,7 +46,7 @@ public class GestionarEmpleados {
         }
     }
     
-    public void mostrarPersonas() {
+    public void mostrarEmpleados() {
         if (listaEmpleados.size() > 0) {
             for (Empleado empleado : listaEmpleados) {
                 System.out.println(empleado);
@@ -56,7 +58,7 @@ public class GestionarEmpleados {
     
     public void ordenarPorNombre() {
         Collections.sort(listaEmpleados, (Empleado empleado1, Empleado empleado2)
-                 -> persona1.getNombres().compareTo(persona2.getNombres()));
-        mostrarPersonas();
+                 -> empleado1.getNombres().compareTo(empleado2.getNombres()));
+        mostrarEmpleados();
     }    
 }

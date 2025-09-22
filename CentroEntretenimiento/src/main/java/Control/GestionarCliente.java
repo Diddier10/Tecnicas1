@@ -91,7 +91,7 @@ public class GestionarCliente {
         }
     }
     
-    public void mostrarPersonas() {
+    public void mostrarClientes() {
         if (listaClientes.size() > 0) {
             for (Cliente cliente : listaClientes) {
                 System.out.println(persona);
@@ -105,7 +105,7 @@ public class GestionarCliente {
     public void ordenarPorNombre() {
         Collections.sort(listaClientes, (Persona persona1, Persona persona2)
                 -> persona1.getNombres().compareTo(persona2.getNombres()));
-        mostrarPersonas();
+        mostrarClientes();
     }
      //Buscarplan(int id, nombre)
      
@@ -116,10 +116,10 @@ public class GestionarCliente {
         System.out.println("Ingrese el DNI a buscar");
         Scanner entrada = new Scanner(System.in);
         dniBuscado= entrada.next();
-        for (Cliente cliente: listaClientes){
+        for (Cliente c1: listaClientes){
             if (dniBuscado.equalsIgnoreCase(cliente.getIdentificación())){
                 System.out.println("Lo encontre");
-                System.out.println("Es"+persona);
+                System.out.println("Es"+cliente);
             }else{
                 System.out.println("Aun no lo encuentro");
             }

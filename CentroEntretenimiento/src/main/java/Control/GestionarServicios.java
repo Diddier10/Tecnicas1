@@ -44,7 +44,8 @@ public class GestionarServicios {
         System.out.print("Peso: ");
         peso = entrada.nextDouble();
         Servicio servicio = new Servicio(dni, apellidos, nombres, sexo, edad, (float) peso);
-        listaServicios.add(servicio); //Validar inserción , boolean 
+       
+    //Validar inserción , boolean 
     }*/
 
     /*public void buscarServicio() {
