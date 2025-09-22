@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author samuelr.quinones
+ * @author Ali Garshasebi
  */
 
 

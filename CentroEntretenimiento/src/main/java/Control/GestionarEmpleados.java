@@ -5,7 +5,6 @@
 package Control;
 
 import Model.Empleado;
-import Model.Persona;
 import Util.Lectura;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +14,7 @@ import java.util.Scanner;
  * @author Alima
  */
 public class GestionarEmpleados {
-    ArrayList<Persona> listaPersonas;
+    ArrayList<Empleado> listaEmpleados;
     private Lectura lectura = new Lectura();
     public Empleado crearEmpleado(){
         Empleado empleado = new Empleado();
@@ -28,116 +27,36 @@ public class GestionarEmpleados {
         empleado.setCargo(lectura.leerString("Cargo en la empresa"));
         return empleado;
     }
-    public void registrarPersona() {
-        String dni, apellidos, nombres, sexo;
-        int edad;
-        double peso;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("DNI: ");
-        dni = entrada.next();
-        System.out.print("Apellidos: ");
-        apellidos = entrada.next();
-        System.out.print("Nombres: ");
-        nombres = entrada.next();
-        System.out.print("Sexo: ");
-        sexo = entrada.next();
-        System.out.print("Edad: ");
-        edad = entrada.nextInt();
-        System.out.print("Peso: ");
-        peso = entrada.nextDouble();
-        Persona persona = new Persona(dni, apellidos, nombres, sexo, edad, (float) peso);
-        listaPersonas.add(persona); //Validar inserción , boolean 
-    }
-
-    public void buscarPersona() {
-        String dni;
+    
+    public void eliminarEmpleado() {
+        String identificacion ;
         int indice;
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese DNI a buscar: ");
-        dni = entrada.next();
-        Persona persona = new Persona(dni);
-        indice = listaPersonas.indexOf(persona);
-        System.out.println("Estoy buscando una persona con dni=1"+indice);
-        if (indice != -1) { //Lógica negativa.
-            persona = listaPersonas.get(indice);
-            System.out.println(persona);
+        System.out.print("Ingrese identificacion para eliminar: ");
+        identificacion = entrada.next();
+        Empleado empleado = new Empleado(identificacion);
+        indice = listaEmpleados.indexOf(empleado);
+        if (indice != -1) {
+            empleado = listaEmpleados.remove(indice);
+            System.out.println("Empleado eliminada: " + empleado);
         } else {
-            System.out.println("La persona no se encuentra");
+            System.out.println("El empleado no se encuentra");
         }
     }
     
-    public void buscarPersona(String basura) {
-        String nombre, apellidos;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese los nombres: ");
-        nombre = entrada.next();
-        System.out.println("Ingrese los apellidos:");
-        apellidos = entrada.next();
-        Persona persona = new Persona(nombre, apellidos); //Errror, constructor nombre no definido 
-        indice = listaPersonas.indexOf(persona);
-        if (indice != -1) { //Lógica negativa.
-            persona = listaPersonas.get(indice);
-            System.out.println(persona);
-        } else {
-            System.out.println("La persona no se encuentra");
-        }
-    }
-
-
-    public void eliminarPersona() {
-        String dni;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese DNI para eliminar: ");
-        dni = entrada.next();
-        Persona persona = new Persona(dni);
-        indice = listaPersonas.indexOf(persona);
-        if (indice != -1) {
-            persona = listaPersonas.remove(indice);
-            System.out.println("Persona eliminada: " + persona);
-        } else {
-            System.out.println("La persona no se encuentra");
-        }
-    }
-    
-    public void eliminarPersonaNombre() {  
-        String nombre, apellidos;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese el nombre: ");
-        nombre = entrada.next();
-        System.out.print("Ingrese Los apellidos: ");
-        apellidos = entrada.next();
-        Persona persona = new Persona(nombre,apellidos);
-        indice = listaPersonas.indexOf(persona);
-        if (indice != -1) {
-            persona = listaPersonas.remove(indice);
-            System.out.println("Persona eliminada: " + persona);
-        } else {
-            System.out.println("La persona no se encuentra");
-        }
-    }
-
     public void mostrarPersonas() {
-        if (listaPersonas.size() > 0) {
-            for (Persona persona : listaPersonas) {
-                System.out.println(persona);
+        if (listaEmpleados.size() > 0) {
+            for (Empleado empleado : listaEmpleados) {
+                System.out.println(empleado);
             }
         } else {
-            System.out.println("No existen personas registradas");
+            System.out.println("No existen empleados registrados");
         }
     }
-
-    public void ordenarPorApellido() {
-        Collections.sort(listaPersonas, (Persona persona1, Persona persona2)
-                -> persona1.getApellidos().compareTo(persona2.getApellidos()));
-        mostrarPersonas();
-    }
     
-     public void ordenarPorNombre() {
-        Collections.sort(listaPersonas, (Persona persona1, Persona persona2)
-                -> persona1.getNombres().compareTo(persona2.getNombres()));
+    public void ordenarPorNombre() {
+        Collections.sort(listaEmpleados, (Empleado empleado1, Empleado empleado2)
+                 -> persona1.getNombres().compareTo(persona2.getNombres()));
         mostrarPersonas();
-    }
+    }    
 }

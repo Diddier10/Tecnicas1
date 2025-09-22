@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Alima
  */
 public class GestionarCliente {
-    ArrayList<Persona> listaPersonas;
+    ArrayList<Cliente> listaClientes;
     private Lectura lectura = new Lectura();
     Persona persona= new Persona();
     public Cliente crearCliente(){
@@ -29,54 +29,35 @@ public class GestionarCliente {
         cliente.setPracticaActividadFisica(lectura.leerBoolean("JAJAJAJAJA"));
         cliente.setActividadFisica(lectura.leerString("Realiza actividad fisica? (S/N):"));
         cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, ¿Cuantos minutos a la semana?:"));
+        listaClientes.add(cliente);
         return cliente;
     }
     public Cliente crearCliente(String mensaje){
         Cliente cliente = new Cliente();
         System.out.println(mensaje);
         cliente.setIdentificación(lectura.leerString("Identificación: "));
+        listaClientes.add(cliente);
         return cliente;
     }
-     
-    public void registrarPersona() {
-        String identificación, apellidos, nombres, sexo;
-        int edad;
-        double peso;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("DNI: ");
-        identificación = entrada.next();
-        System.out.print("Apellidos: ");
-        apellidos = entrada.next();
-        System.out.print("Nombres: ");
-        nombres = entrada.next();
-        System.out.print("Sexo: ");
-        sexo = entrada.next();
-        System.out.print("Edad: ");
-        edad = entrada.nextInt();
-        System.out.print("Peso: ");
-        peso = entrada.nextDouble();
-        Persona persona = new Persona(identificación, apellidos, nombres, sexo, edad, peso);
-        listaPersonas.add(persona); //Validar inserción , boolean 
-    }
 
-    public void buscarPersona() {
-        String identificación;
+    public void buscarCliente() {
+        String identificacion;
         int indice;
         Scanner entrada = new Scanner(System.in);
         System.out.print("Ingrese DNI a buscar: ");
-        identificación = entrada.next();
-        Persona persona = new Persona(identificación);
-        indice = listaPersonas.indexOf(persona);
+        identificacion = entrada.next();
+        Cliente cliente = new Cliente(identificacion);
+        indice = listaClientes.indexOf(cliente);
         System.out.println("Estoy buscando una persona con dni=1"+indice);
         if (indice != -1) { //Lógica negativa.
-            persona = listaPersonas.get(indice);
+            persona = listaClientes.get(indice);
             System.out.println(persona);
         } else {
             System.out.println("La persona no se encuentra");
         }
     }
     
-    public void buscarPersona(String basura) {
+    public void buscarCliente(String basura) {
         String nombres, apellidos;
         int indice;
         Scanner entrada = new Scanner(System.in);
@@ -84,69 +65,45 @@ public class GestionarCliente {
         nombres = entrada.next();
         System.out.println("Ingrese los apellidos:");
         apellidos = entrada.next();
-        Persona persona = new Persona(nombres, apellidos); //Errror, constructor nombre no definido 
-        indice = listaPersonas.indexOf(persona);
+        Cliente cliente = new Cliente(nombres, apellidos); //Errror, constructor nombre no definido 
+        indice = listaClientes.indexOf(persona);
         if (indice != -1) { //Lógica negativa.
-            persona = listaPersonas.get(indice);
+            persona = listaClientes.get(indice);
             System.out.println(persona);
         } else {
             System.out.println("La persona no se encuentra");
         }
     }
-
-
-    public void eliminarPersona() {
+    
+    public void eliminarCliente() {
         String identificación;
         int indice;
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese DNI para eliminar: ");
+        System.out.print("Ingrese identificacion para eliminar: ");
         identificación = entrada.next();
-        Persona persona = new Persona(identificación);
-        indice = listaPersonas.indexOf(persona);
+        Cliente cliente = new Cliente(identificación);
+        indice = listaClientes.indexOf(persona);
         if (indice != -1) {
-            persona = listaPersonas.remove(indice);
+            persona = listaClientes.remove(indice);
             System.out.println("Persona eliminada: " + persona);
         } else {
             System.out.println("La persona no se encuentra");
         }
     }
     
-    public void eliminarPersonaNombre() {  
-        String nombres, apellidos;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese el nombre: ");
-        nombres = entrada.next();
-        System.out.print("Ingrese Los apellidos: ");
-        apellidos = entrada.next();
-        Persona persona = new Persona(nombres ,apellidos);
-        indice = listaPersonas.indexOf(persona);
-        if (indice != -1) {
-            persona = listaPersonas.remove(indice);
-            System.out.println("Persona eliminada: " + persona);
-        } else {
-            System.out.println("La persona no se encuentra");
-        }
-    }
-
     public void mostrarPersonas() {
-        if (listaPersonas.size() > 0) {
-            for (Persona persona : listaPersonas) {
+        if (listaClientes.size() > 0) {
+            for (Cliente cliente : listaClientes) {
                 System.out.println(persona);
             }
         } else {
             System.out.println("No existen personas registradas");
         }
     }
-
-    public void ordenarPorApellido() {
-        Collections.sort(listaPersonas, (Persona persona1, Persona persona2)
-                -> persona1.getApellidos().compareTo(persona2.getApellidos()));
-        mostrarPersonas();
-    }
+    
     
     public void ordenarPorNombre() {
-        Collections.sort(listaPersonas, (Persona persona1, Persona persona2)
+        Collections.sort(listaClientes, (Persona persona1, Persona persona2)
                 -> persona1.getNombres().compareTo(persona2.getNombres()));
         mostrarPersonas();
     }
@@ -159,8 +116,8 @@ public class GestionarCliente {
         System.out.println("Ingrese el DNI a buscar");
         Scanner entrada = new Scanner(System.in);
         dniBuscado= entrada.next();
-        for (Persona persona: listaPersonas){
-            if (dniBuscado.equalsIgnoreCase(persona.getIdentificación())){
+        for (Cliente cliente: listaClientes){
+            if (dniBuscado.equalsIgnoreCase(cliente.getIdentificación())){
                 System.out.println("Lo encontre");
                 System.out.println("Es"+persona);
             }else{

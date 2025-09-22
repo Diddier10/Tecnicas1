@@ -16,6 +16,10 @@ public class Empleado extends Persona {
     public Empleado() {
     }
 
+    public Empleado(String identificación) {
+        super(identificación);
+    }
+
     public Empleado(int salario, int antiguedad, String cargo) {
         this.salario = salario;
         this.antiguedad = antiguedad;

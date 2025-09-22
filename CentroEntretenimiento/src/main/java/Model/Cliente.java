@@ -32,6 +32,14 @@ public class Cliente extends Persona {
         this.deuda = deuda;
     }
 
+    public Cliente( String nombres, String apellidos) {
+        super( apellidos, nombres);
+    }
+
+    public Cliente(String identificación) {
+        super(identificación);
+    }
+
     public int getEstratoSE() {
         return estratoSE;
     }
