@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Alimateo Garshasebi
  */
 public class GestionarCliente {
-    ArrayList<Cliente> listaClientes;
+    ArrayList<Cliente> listaClientes= new ArrayList<>();
     private Lectura lectura = new Lectura();
     Persona persona= new Persona();
     public Cliente crearCliente(){

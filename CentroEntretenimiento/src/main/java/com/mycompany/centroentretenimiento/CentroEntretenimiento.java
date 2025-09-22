@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 /**
  *
- * @author Ali Garshasebi
+ * @author Ali Garshasebie
  */
 
 
 public class CentroEntretenimiento {
     private static GestionarProductos gp = new GestionarProductos();
-    private static GestionarCliente gc = new GestionarCliente();
+    static GestionarCliente gc = new GestionarCliente();
     private static GestionarServicios gh= new GestionarServicios();
     
     
@@ -30,10 +30,10 @@ public class CentroEntretenimiento {
         Scanner entrada = new Scanner(System.in); //Cambiar por lectura desde la clase Lectura
         do {
             System.out.println("\nLISTA DE PERSONAS:");
-            System.out.println("[1] Verificar estado de cuenta");
-            System.out.println("[2] Conocer a mis clientes como entrenador");
+            System.out.println("[1] Registrar clientes");
+            System.out.println("[2] Verificar estado de cuenta");
             //System.out.println("[2] Buscar persona por identificación");
-            System.out.println("[3] Buscar persona por nombre y apellidos");
+            System.out.println("[3] Conocer a mis clientes como entrenador");
             System.out.println("[4] Eliminar persona");
             System.out.println("[5] Eliminar persona por nombre");
             System.out.println("[6] Ordenar por apellidos");
@@ -46,15 +46,17 @@ public class CentroEntretenimiento {
                 case 1:
                     //Cliente , para poder comparar Cliente con Cliente
                     
-                    gc.estadoDeuda(gc.crearCliente());
+                    gc.crearCliente();
                     break;
                 case 2:
-                    GestionarCliente entrenador = new GestionarCliente();
-                    entrenador.crearCliente();
-                    entrenador.mostrarClientes();
-                    //proyectoPersonas.buscarPersona();
+                    //Cliente , para poder comparar Cliente con Cliente
+                    gc.estadoDeuda(gc.crearCliente());
                     break;
                 case 3:
+                    GestionarCliente entrenador = new GestionarCliente();
+                    //entrenador.crearCliente();
+                    entrenador.mostrarClientes();
+                    //proyectoPersonas.buscarPersona();
                     //proyectoPersonas.buscarPersona("Hola");
                     break;
                 case 4:
@@ -81,7 +83,7 @@ public class CentroEntretenimiento {
         Servicio servicio= gh.crearServicio();
         
         
-    }
+    }//Diddier
 }
 
 
