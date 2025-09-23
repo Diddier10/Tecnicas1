@@ -27,9 +27,10 @@ public class GestionarCliente {
     public Cliente crearCliente(){
         Cliente cliente = new Cliente();
         System.out.println("A continuacion los datos del cliente:");
-        cliente.setIdentificación(lectura.leerString("Identificación:"));
-        cliente.setNombres(lectura.leerString("Nombre"));
-        cliente.setDirección(lectura.leerString("Dirección:"));
+        cliente.setIdentificación(lectura.leerString("Identificacion:"));
+        cliente.setNombres(lectura.leerString("Nombre:"));
+        cliente.setApellidos(lectura.leerString("Apellido:"));
+        cliente.setDirección(lectura.leerString("Direccion:"));
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
         cliente.setPeso(lectura.leerFloat("Peso:"));
@@ -114,21 +115,15 @@ public class GestionarCliente {
             System.out.println("No existen personas registradas");
             return;
         }
-
-        // 1. Mostrar lista con números
         for (int i = 0; i < listaClientes.size(); i++) {
             Cliente c = listaClientes.get(i);
             System.out.println((i + 1) + ". " + c.getNombres() + " " + c.getApellidos());
         }
-
-        // 2. Pedir al entrenador que elija
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese el numero en la lista del cliente que desea ver: ");
         int opcion = sc.nextInt();
-
-        // 3. Validar y mostrar solo actividad y peso
         if (opcion > 0 && opcion <= listaClientes.size()) {
-            Cliente seleccionado = listaClientes.get(opcion - 1);
+            Cliente seleccionado = listaClientes.get(opcion-1);
             System.out.println("===== INFORMACIÓN DEL CLIENTE =====");
             System.out.println("Actividad Física: " + seleccionado.getActividadFisica());
             System.out.println("Peso: " + seleccionado.getPeso() + " kg");
@@ -139,7 +134,6 @@ public class GestionarCliente {
     }
      //Buscarplan(int id, nombre)
      
-     // public Boleean verificarAccesoAServicios(int id){}
     public double estadoDeuda(Cliente cliente){
         String dniBuscado;
         int indice;
@@ -166,7 +160,13 @@ public class GestionarCliente {
         PlanEntrenamiento plan = listaPlanes.get(i);
         System.out.println("Cliente: " + c.getNombres() + " " + c.getApellidos());
         System.out.println("Plan de entrenamiento de 30 días:");
-        System.out.println("Cardio:2 veces a la semana____Pesas:4 veces a la semana");
+        System.out.println("Cardio:2 veces a la semana____Pesas:4 veces a la semana \n Día 1: Cardio intenso (30 minutos)\n" +
+        "Día 2: Piernas y glúteos (sentadillas, lunges, peso muerto)\n" +
+        "Día 3: Pecho y tríceps (flexiones, fondos, press con mancuernas)\n" +
+        "Día 4: Espalda y bíceps (dominadas, remo con mancuerna)\n" +
+        "Día 5: Core (abdominales, plancha, mountain climbers)\n" +
+        "Día 6: Cardio + fuerza (circuito de saltos, burpees, sentadillas)\n" +
+        "Día 7: Estiramientos y recuperación activa (yoga, caminata suave)");
         }
         System.out.println("--------------------------");
     }

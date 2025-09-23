@@ -61,10 +61,4 @@ public class PlanEntrenamiento {
         sb.append('}');
         return sb.toString();
     }
-
-    public ArrayList<String> getEjerciciosPorDia() {
-        ArrayList<String> getEjerciciosPorDia = null ;
-        return getEjerciciosPorDia;
-    }
-    
 }
