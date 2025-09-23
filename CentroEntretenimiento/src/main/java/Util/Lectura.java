@@ -48,7 +48,7 @@ public class Lectura {
                 valor = Integer.parseInt(texto);   // convertimos a número
                 valido = true;  // si llega aquí, no hubo error
             } catch (NumberFormatException e) {
-                System.out.println("️Por favor ingrese un número válido.");
+                System.out.println("️Por favor ingrese un numero valido.");
             }
         }
         return valor;
@@ -71,7 +71,7 @@ public class Lectura {
                 valor = Float.parseFloat(texto);
                 valido = true;
             } catch (NumberFormatException e) {
-                System.out.println("⚠️ Por favor ingrese un número decimal válido (use punto, no coma).");
+                System.out.println("️ Por favor ingrese un numero decimal valido (use punto, no coma).");
             }
         }
         return valor;
@@ -89,7 +89,7 @@ public class Lectura {
                 return false;
             }
 
-            System.out.println("⚠️ Por favor responda con S o N.");
+            System.out.println("️ Por favor responda con Si o No.");
         }
     }
 }

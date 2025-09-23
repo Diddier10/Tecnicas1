@@ -34,9 +34,9 @@ public class GestionarCliente {
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
         cliente.setPeso(lectura.leerFloat("Peso:"));
-        cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (S/N):"));
+        cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (Si/No):"));
         cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
-        cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, ¿Cuantos minutos a la semana?:"));
+        cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, Cuantos minutos a la semana?:"));
         listaClientes.add(cliente);
         PlanEntrenamiento plan = new PlanEntrenamiento(cliente); // Usa la info del cliente para el plan
         planesPorCliente.put(cliente, plan);
@@ -102,7 +102,7 @@ public class GestionarCliente {
     }
     
     public void mostrarClientes() {
-        if (listaClientes.size() > 0) {
+        if (!listaClientes.isEmpty()) {
             for (Cliente cliente : listaClientes) {
                 System.out.println(cliente);
             }
@@ -111,7 +111,7 @@ public class GestionarCliente {
         }
     }
     public void mostrarClienteSeleccionado() {
-        if (listaClientes.size() == 0) {
+        if (listaClientes.isEmpty()) {
             System.out.println("No existen personas registradas");
             return;
         }
@@ -124,8 +124,8 @@ public class GestionarCliente {
         int opcion = sc.nextInt();
         if (opcion > 0 && opcion <= listaClientes.size()) {
             Cliente seleccionado = listaClientes.get(opcion-1);
-            System.out.println("===== INFORMACIÓN DEL CLIENTE =====");
-            System.out.println("Actividad Física: " + seleccionado.getActividadFisica());
+            System.out.println("===== INFORMACION DEL CLIENTE =====");
+            System.out.println("Actividad Fisica: " + seleccionado.getActividadFisica());
             System.out.println("Peso: " + seleccionado.getPeso() + " kg");
             System.out.println("==================================");
         } else {
@@ -151,7 +151,7 @@ public class GestionarCliente {
         return 0;
     } 
     public void mostrarPlanesDeEntrenamiento() {
-    if (listaClientes.size() == 0) {
+    if (listaClientes.isEmpty()) {
         System.out.println("No hay clientes registrados.");
         return;
     }
@@ -159,16 +159,18 @@ public class GestionarCliente {
         Cliente c = listaClientes.get(i);
         PlanEntrenamiento plan = listaPlanes.get(i);
         System.out.println("Cliente: " + c.getNombres() + " " + c.getApellidos());
-        System.out.println("Plan de entrenamiento de 30 días:");
-        System.out.println("Cardio:2 veces a la semana____Pesas:4 veces a la semana \n Día 1: Cardio intenso (30 minutos)\n" +
-        "Día 2: Piernas y glúteos (sentadillas, lunges, peso muerto)\n" +
-        "Día 3: Pecho y tríceps (flexiones, fondos, press con mancuernas)\n" +
-        "Día 4: Espalda y bíceps (dominadas, remo con mancuerna)\n" +
-        "Día 5: Core (abdominales, plancha, mountain climbers)\n" +
-        "Día 6: Cardio + fuerza (circuito de saltos, burpees, sentadillas)\n" +
-        "Día 7: Estiramientos y recuperación activa (yoga, caminata suave)");
+        System.out.println("===== PLAN DE ENTRENAMIENTO =====");
+        System.out.println("""
+                           ESTE PLAN SE REPETIRA SOLAMENTE POR 4 SEMANAS
+                           Dia 1: Cardio intenso (30 minutos)
+                           Dia 2: Piernas y gluteos (sentadillas, lunges, peso muerto)
+                           Dia 3: Pecho y triceps (flexiones, fondos, press con mancuernas)
+                           Dia 4: Espalda y biceps (dominadas, remo con mancuerna)
+                           Dia 5: Core (abdominales, plancha, mountain climbers)
+                           Dia 6: Cardio + fuerza (circuito de saltos, burpees, sentadillas)
+                           Dia 7: Estiramientos y recuperacion activa (yoga, caminata suave)""");
         }
-        System.out.println("--------------------------");
+        System.out.println("-----------------------------------------------------------------");
     }
 }
 

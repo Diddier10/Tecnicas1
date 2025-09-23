@@ -35,12 +35,13 @@ public class CentroEntretenimiento {
             System.out.println("[2] Verificar estado de cuenta");
             System.out.println("[3] Conocer a mis clientes como entrenador");
             System.out.println("[4] Consultar planes de entrenamiento de mis clientes");
-            System.out.println("[5] Eliminar persona por nombre");
+            System.out.println("[5] Salir\n");
+            /*System.out.println("[5] Eliminar persona por nombre");
             System.out.println("[6] Ordenar por apellidos");
             System.out.println("[7] Ordenar por nombre");
             System.out.println("[8] Mostrar persona");
-            System.out.println("[9] Salir\n");
-            System.out.print("Ingrese opción (1-9): ");
+            System.out.println("[9] Salir\n");*/
+            System.out.print("Ingrese opcion (1-5): ");
             opcion = entrada.nextInt();
             switch (opcion) {
                 case 1:
@@ -59,9 +60,9 @@ public class CentroEntretenimiento {
                    
                     break;
                 case 5:
-                    
+                    System.out.println("GRACIAS POR UTILIZAR NUESTRO SISTEMA.");
                     break;
-                case 6:
+                /*case 6:
                     
                     break;
                 case 7:
@@ -69,9 +70,9 @@ public class CentroEntretenimiento {
                     break;
                 case 8:
                  
-                    break;
+                    break;*/
             }
-        } while (opcion != 9);
+        } while (opcion != 4);
     } 
     public static void main(String[] args) {
         menu();
