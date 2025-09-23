@@ -50,14 +50,13 @@ public class CentroEntretenimiento {
                     break;
                 case 2:
                     //Cliente , para poder comparar Cliente con Cliente
-                    gc.estadoDeuda(gc.crearCliente());
+                    gc.estadoDeuda();
                     break;
                 case 3:
                     gc.mostrarClienteSeleccionado();
                     break;
                 case 4:
                     gc.mostrarPlanesDeEntrenamiento();
-                   
                     break;
                 case 5:
                     System.out.println("GRACIAS POR UTILIZAR NUESTRO SISTEMA.");
@@ -72,7 +71,7 @@ public class CentroEntretenimiento {
                  
                     break;*/
             }
-        } while (opcion != 4);
+        } while (opcion != 5);
     } 
     public static void main(String[] args) {
         menu();

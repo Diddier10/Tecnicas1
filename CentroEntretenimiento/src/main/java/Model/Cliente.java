@@ -4,6 +4,9 @@
  */
 package Model;
 
+import java.time.format.TextStyle;
+import java.util.Locale;
+
 /**
  *
  * @author Alima
@@ -18,6 +21,7 @@ public class Cliente extends Persona {
     private int tiempoPlan;
     private double deuda;
     private PlanEntrenamiento planentrenamiento;
+    private String mesActual;
     public Cliente() {
     }
 
@@ -104,6 +108,18 @@ public class Cliente extends Persona {
         this.deuda = deuda;
     }
 
+    public PlanEntrenamiento getPlanentrenamiento() {
+        return planentrenamiento;
+    }
+
+    public void setPlanentrenamiento(PlanEntrenamiento planentrenamiento) {
+        this.planentrenamiento = planentrenamiento;
+    }
+
+    public String getMesActual() {
+        return mesActual;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -118,21 +134,14 @@ public class Cliente extends Persona {
         sb.append(", deuda=").append(deuda);
         sb.append('}');
         return sb.toString();
-    }
+    }   
 
-    public PlanEntrenamiento getPlanentrenamiento() {
-        return planentrenamiento;
+    public void setMesActual(String mesActual) {
+        this.mesActual = mesActual;
     }
+}   
+    
+    
+    
+    
 
-    public void setPlanentrenamiento(PlanEntrenamiento planentrenamiento) {
-        this.planentrenamiento = planentrenamiento;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-}

@@ -34,6 +34,7 @@ public class GestionarCliente {
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
         cliente.setPeso(lectura.leerFloat("Peso:"));
+        cliente.setMesActual(lectura.leerString("Mes de registro"));
         cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (Si/No):"));
         cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
         cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, Cuantos minutos a la semana?:"));
@@ -132,24 +133,40 @@ public class GestionarCliente {
             System.out.println("Número inválido.");
         }
     }
-     //Buscarplan(int id, nombre)
      
-    public double estadoDeuda(Cliente cliente){
-        String dniBuscado;
-        int indice;
-        System.out.println("Ingrese el DNI a buscar");
-        Scanner entrada = new Scanner(System.in);
-        dniBuscado= entrada.next();
-        for (Cliente c1: listaClientes){
-            if (dniBuscado.equalsIgnoreCase(cliente.getIdentificación())){
-                System.out.println("Lo encontre");
-                System.out.println("Es"+cliente);
-            }else{
-                System.out.println("Aun no lo encuentro");
-            }
+    public void estadoDeuda() {
+    Scanner entrada = new Scanner(System.in);
+    System.out.print("Ingrese identificacion para buscar: ");
+    String identificacion = entrada.nextLine();
+    Cliente clienteEncontrado = null;
+    for (Cliente c : listaClientes) {
+        if (c.getIdentificación().equals(identificacion)) {
+            clienteEncontrado = c;
+            break;
         }
-        return 0;
-    } 
+    }
+    if (clienteEncontrado == null) {
+        System.out.println("Cliente con identificacion " + identificacion + " no fue encontrado.");
+    } else {
+        System.out.print("Ingrese el mes a consultar: ");
+        String mes = entrada.nextLine();
+        System.out.println("\nEstado de cuenta de: "+ clienteEncontrado.getNombres() + " "+ clienteEncontrado.getApellidos());
+        if (clienteEncontrado.getMesActual().equalsIgnoreCase(mes)) {
+            if (clienteEncontrado.getDeuda() > 0) {
+                System.out.println("Mes: " + mes);
+                System.out.println("Deuda actual: $" + clienteEncontrado.getDeuda());
+                System.out.println("No tiene derecho al gimnasio hasta pagar la deuda.");
+            } else {
+                System.out.println("Mes: " + mes);
+                System.out.println("Está al día con los pagos.");
+                System.out.println("Tiene derecho al gimnasio.");
+            }
+        } else {
+            System.out.println("En el mes " + mes + " no tiene deuda registrada.");
+        }
+    }
+}
+
     public void mostrarPlanesDeEntrenamiento() {
     if (listaClientes.isEmpty()) {
         System.out.println("No hay clientes registrados.");
