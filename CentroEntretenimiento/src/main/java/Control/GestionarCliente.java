@@ -39,7 +39,7 @@ public class GestionarCliente {
         listaClientes.add(cliente);
         PlanEntrenamiento plan = new PlanEntrenamiento(cliente); // Usa la info del cliente para el plan
         planesPorCliente.put(cliente, plan);
-        listaClientes.add(cliente);
+        listaPlanes.add(plan);
         return cliente;
     }
     /*public Cliente crearCliente(String mensaje){
@@ -123,7 +123,7 @@ public class GestionarCliente {
 
         // 2. Pedir al entrenador que elija
         Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese la identificación del cliente que desea ver: ");
+        System.out.print("Ingrese el numero en la lista del cliente que desea ver: ");
         int opcion = sc.nextInt();
 
         // 3. Validar y mostrar solo actividad y peso
@@ -156,7 +156,7 @@ public class GestionarCliente {
         }
         return 0;
     } 
-    public void mostrarPlanesDeEntrenamiento(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes) {
+    public void mostrarPlanesDeEntrenamiento() {
     if (listaClientes.size() == 0) {
         System.out.println("No hay clientes registrados.");
         return;
@@ -166,12 +166,10 @@ public class GestionarCliente {
         PlanEntrenamiento plan = listaPlanes.get(i);
         System.out.println("Cliente: " + c.getNombres() + " " + c.getApellidos());
         System.out.println("Plan de entrenamiento de 30 días:");
-        ArrayList<String> ejercicios = plan.getEjerciciosPorDia();
-        for (int dia = 0; dia < ejercicios.size(); dia++) {
-            System.out.println("Día " + (dia + 1) + ": " + ejercicios.get(dia));
+        System.out.println("Cardio:2 veces a la semana____Pesas:4 veces a la semana");
         }
         System.out.println("--------------------------");
     }
 }
-}
+
 //EqualsignoreCase solamente funciona entre String 

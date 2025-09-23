@@ -17,7 +17,7 @@ public class Cliente extends Persona {
     private String planEntrenamiento;
     private int tiempoPlan;
     private double deuda;
-
+    private PlanEntrenamiento planentrenamiento;
     public Cliente() {
     }
 
@@ -118,6 +118,14 @@ public class Cliente extends Persona {
         sb.append(", deuda=").append(deuda);
         sb.append('}');
         return sb.toString();
+    }
+
+    public PlanEntrenamiento getPlanentrenamiento() {
+        return planentrenamiento;
+    }
+
+    public void setPlanentrenamiento(PlanEntrenamiento planentrenamiento) {
+        this.planentrenamiento = planentrenamiento;
     }
     
     

@@ -61,7 +61,7 @@ public class CentroEntretenimiento {
                     //proyectoPersonas.buscarPersona("Hola");
                     break;
                 case 4:
-                   gc.mostrarPlanesDeEntrenamiento(listaClientes, listaPlanes);
+                   gc.mostrarPlanesDeEntrenamiento();
                     //proyectoPersonas.eliminarPersona();
                     break;
                 case 5:

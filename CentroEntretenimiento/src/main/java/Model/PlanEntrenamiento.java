@@ -63,7 +63,7 @@ public class PlanEntrenamiento {
     }
 
     public ArrayList<String> getEjerciciosPorDia() {
-        ArrayList<String> getEjerciciosPorDia = null;
+        ArrayList<String> getEjerciciosPorDia = null ;
         return getEjerciciosPorDia;
     }
     
