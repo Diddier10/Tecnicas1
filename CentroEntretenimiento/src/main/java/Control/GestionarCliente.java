@@ -16,11 +16,12 @@ import java.util.Scanner;
  */
 public class GestionarCliente {
     ArrayList<Cliente> listaClientes;
-    ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
+    ArrayList<PlanEntrenamiento> listaPlanes;
     private Lectura lectura = new Lectura();
     Persona persona= new Persona();
-    public GestionarCliente(ArrayList<Cliente> listaClientes) {
+    public GestionarCliente(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes) {
         this.listaClientes = listaClientes;
+        this.listaPlanes=listaPlanes;
     }
     public Cliente crearCliente(){
         Cliente cliente = new Cliente();
@@ -31,7 +32,9 @@ public class GestionarCliente {
         cliente.setDirección(lectura.leerString("Direccion:"));
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
+        cliente.setTrabajaEn(lectura.leerString("Donde trabajas actualmente?: "));
         cliente.setPeso(lectura.leerFloat("Peso:"));
+        cliente.setPlanEntrenamiento(lectura.leerString("Que plan de entrenamiento sigues hasta hoy?:"));
         cliente.setMesActual(lectura.leerString("Mes de registro en formato de numero: Enero(01), Febrero(02)...:"));
         cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (Si/No):"));
         cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
@@ -108,84 +111,6 @@ public class GestionarCliente {
         } else {
             System.out.println("No existen personas registradas");
         }
-    }
-    public void mostrarClienteSeleccionado() {
-        if (listaClientes.isEmpty()) {
-            System.out.println("No existen personas registradas");
-            return;
-        }
-        for (int i = 0; i < listaClientes.size(); i++) {
-            Cliente c = listaClientes.get(i);
-            System.out.println((i + 1) + ". " + c.getNombres() + " " + c.getApellidos());
-        }
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese el numero en la lista del cliente que desea ver: ");
-        int opcion = sc.nextInt();
-        if (opcion > 0 && opcion <= listaClientes.size()) {
-            Cliente seleccionado = listaClientes.get(opcion-1);
-            System.out.println("===== INFORMACION DEL CLIENTE =====");
-            System.out.println("Actividad Fisica: " + seleccionado.getActividadFisica());
-            System.out.println("Peso: " + seleccionado.getPeso() + " kg");
-            System.out.println("==================================");
-        } else {
-            System.out.println("Número inválido.");
-        }
-    }
-     
-    /*public void estadoDeuda() {
-    Scanner entrada = new Scanner(System.in);
-    System.out.print("Ingrese identificacion para buscar: ");
-    String identificacion = entrada.nextLine();
-    Cliente clienteEncontrado = null;
-    for (Cliente c : listaClientes) {
-        if (c.getIdentificación().equals(identificacion)) {
-            clienteEncontrado = c;
-            break;
-        }
-    }
-    if (clienteEncontrado == null) {
-        System.out.println("Cliente con identificacion " + identificacion + " no fue encontrado.");
-    } else {
-        System.out.print("Ingrese el mes a consultar: ");
-        String mes = entrada.nextLine();
-        System.out.println("\nEstado de cuenta de: "+ clienteEncontrado.getNombres() + " "+ clienteEncontrado.getApellidos());
-        if (clienteEncontrado.getMesActual().equalsIgnoreCase(mes)) {
-            if (clienteEncontrado.getDeuda() > 0) {
-                System.out.println("Mes: " + mes);
-                System.out.println("Deuda actual: $" + clienteEncontrado.getDeuda());
-                System.out.println("No tiene derecho al gimnasio hasta pagar la deuda.");
-            } else {
-                System.out.println("Mes: " + mes);
-                System.out.println("Estas al dia con los pagos.");
-                System.out.println("Tiene derecho al gimnasio.");
-            }
-        } else {
-            System.out.println("En el mes " + mes + " no tiene deuda registrada.");
-        }
-    }
-}*/
-
-    public void mostrarPlanesDeEntrenamiento() {
-    if (listaClientes.isEmpty()) {
-        System.out.println("No hay clientes registrados.");
-        return;
-    }
-    for (int i = 0; i < listaClientes.size(); i++) {
-        Cliente c = listaClientes.get(i);
-        PlanEntrenamiento plan = listaPlanes.get(i);
-        System.out.println("Cliente: " + c.getNombres() + " " + c.getApellidos());
-        System.out.println("===== PLAN DE ENTRENAMIENTO =====");
-        System.out.println("""
-                           ESTE PLAN SE REPETIRA SOLAMENTE POR 4 SEMANAS
-                           Dia 1: Cardio intenso (30 minutos)
-                           Dia 2: Piernas y gluteos (sentadillas, lunges, peso muerto)
-                           Dia 3: Pecho y triceps (flexiones, fondos, press con mancuernas)
-                           Dia 4: Espalda y biceps (dominadas, remo con mancuerna)
-                           Dia 5: Core (abdominales, plancha, mountain climbers)
-                           Dia 6: Cardio + fuerza (circuito de saltos, burpees, sentadillas)
-                           Dia 7: Estiramientos y recuperacion activa (yoga, caminata suave)""");
-        }
-        System.out.println("-----------------------------------------------------------------");
     }
 }
 

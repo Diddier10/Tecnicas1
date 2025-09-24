@@ -10,29 +10,6 @@ import java.util.*;
  *
  * @author Ali
  */
-/*public class Lectura {
-    private Scanner entrada = new Scanner(System.in);
-    
-    public int leerInt(String mensaje){
-        System.out.println(""+mensaje);
-        return entrada.nextInt();
-    }
-
-    public String leerString(String mensaje){
-        System.out.println(""+mensaje);
-        return entrada.nextLine();
-    }
-    
-    public float leerFloat(String mensaje){
-        System.out.println(""+mensaje);
-        return entrada.nextFloat();
-    }
-    public Boolean leerBoolean(String mensaje){
-        System.out.println(""+mensaje);
-        return entrada.hasNextBoolean();
-    }
-}*/
-
 
 public class Lectura {
     private Scanner entrada = new Scanner(System.in);

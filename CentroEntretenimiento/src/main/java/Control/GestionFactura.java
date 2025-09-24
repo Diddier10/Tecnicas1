@@ -5,6 +5,7 @@
 package Control;
 
 import Model.Cliente;
+import Model.PlanEntrenamiento;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,9 +15,11 @@ import java.util.Scanner;
  */
 public class GestionFactura implements Pago {
     ArrayList<Cliente> listaClientes;
+    ArrayList<PlanEntrenamiento> listaPlanes;
 
-    public GestionFactura(ArrayList<Cliente> listaClientes) {
+    public GestionFactura(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes) {
         this.listaClientes = listaClientes;
+        this.listaPlanes=listaPlanes;
     }
     public void crearFactura(){
        /*Verificar que tenga deuda antes del servicio if deuda>0

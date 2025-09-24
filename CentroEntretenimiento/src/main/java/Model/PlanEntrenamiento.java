@@ -4,8 +4,6 @@
  */
 package Model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Alima

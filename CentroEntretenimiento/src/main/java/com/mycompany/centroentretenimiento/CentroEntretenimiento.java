@@ -17,12 +17,15 @@ import java.util.Scanner;
 public class CentroEntretenimiento {
     public static void main(String[] args) {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
-        GestionarCliente gc = new GestionarCliente(listaClientes);
-        GestionFactura gf = new GestionFactura(listaClientes);
-        menu(gc, gf);
+        ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
+        GestionarCliente gc = new GestionarCliente(listaClientes, listaPlanes);
+        GestionFactura gf = new GestionFactura(listaClientes, listaPlanes);
+        GestionarEmpleados ge= new GestionarEmpleados(listaClientes, listaPlanes);
+        GestionarServicios gs= new GestionarServicios(listaClientes, listaPlanes);
+        menu(gc, gf, ge, gs);
     }
 
-    public static void menu(GestionarCliente gc, GestionFactura gf) {
+    public static void menu(GestionarCliente gc, GestionFactura gf, GestionarEmpleados ge, GestionarServicios gs) {
         int opcion;
         Scanner entrada = new Scanner(System.in);
 
@@ -31,8 +34,8 @@ public class CentroEntretenimiento {
             System.out.println("[1] Registrar clientes");
             System.out.println("[2] Verificar estado de cuenta");
             System.out.println("[3] Conocer a mis clientes como entrenador");
-            System.out.println("[4] Consultar planes de entrenamiento de mis clientes");
-            System.out.println("[5] Salir");
+            System.out.println("[4] Consultar planes de entrenamiento de mis clientes como entrenador");
+            System.out.println("[5] Mostrar Clientes");
             System.out.print("Ingrese opción (1-5): ");
             opcion = entrada.nextInt();
             switch (opcion) {
@@ -43,13 +46,13 @@ public class CentroEntretenimiento {
                     gf.estadoDeuda();
                     break;
                 case 3:
-                    gc.mostrarClienteSeleccionado();
+                    ge.mostrarClienteSeleccionado();
                     break;
                 case 4:
-                    gc.mostrarPlanesDeEntrenamiento();
+                    gs.mostrarPlanesDeEntrenamiento();
                     break;
                 case 5:
-                    System.out.println("GRACIAS POR UTILIZAR NUESTRO SISTEMA.");
+                    gc.mostrarClientes();
                     break;
             }
         } while (opcion != 5);
