@@ -4,6 +4,8 @@
  */
 package Control;
 
+import java.util.Scanner;
+
 /**
  * permite compartir comportamientos entre otras clases
  * Constantes 
@@ -13,6 +15,7 @@ package Control;
  * @author Alima
  */
 public interface Pago {
-    public void pagoEfectivo();
-    public void pagoCheque();
+    String pagoEfectivo(Scanner sc);
+    String pagoCheque(Scanner sc);
+    String pagoTarjeta(Scanner sc);
 }

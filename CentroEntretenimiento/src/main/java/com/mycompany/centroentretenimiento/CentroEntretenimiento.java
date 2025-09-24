@@ -18,8 +18,9 @@ public class CentroEntretenimiento {
     public static void main(String[] args) {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
+        ArrayList<Factura> listaFactura = new ArrayList<>();
         GestionarCliente gc = new GestionarCliente(listaClientes, listaPlanes);
-        GestionFactura gf = new GestionFactura(listaClientes, listaPlanes);
+        GestionFactura gf = new GestionFactura(listaClientes, listaPlanes,listaFactura);
         GestionarEmpleados ge= new GestionarEmpleados(listaClientes, listaPlanes);
         GestionarServicios gs= new GestionarServicios(listaClientes, listaPlanes);
         menu(gc, gf, ge, gs);
@@ -54,6 +55,7 @@ public class CentroEntretenimiento {
                 case 5:
                     gc.mostrarClientes();
                     break;
+                case 6:
             }
         } while (opcion != 5);
     }
