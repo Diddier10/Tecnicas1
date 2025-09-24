@@ -8,9 +8,6 @@ import Model.Cliente;
 import Model.Persona;
 import Model.PlanEntrenamiento;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -18,12 +15,13 @@ import java.util.Scanner;
  * @author Alimateo Garshasebi
  */
 public class GestionarCliente {
-    ArrayList<Cliente> listaClientes= new ArrayList<>();
-    private Map<Cliente, PlanEntrenamiento> planesPorCliente = new HashMap<>();
-    ArrayList<Cliente> listaClientes1 = new ArrayList<>();
+    ArrayList<Cliente> listaClientes;
     ArrayList<PlanEntrenamiento> listaPlanes = new ArrayList<>();
     private Lectura lectura = new Lectura();
     Persona persona= new Persona();
+    public GestionarCliente(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
     public Cliente crearCliente(){
         Cliente cliente = new Cliente();
         System.out.println("A continuacion los datos del cliente:");
@@ -34,13 +32,13 @@ public class GestionarCliente {
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
         cliente.setPeso(lectura.leerFloat("Peso:"));
-        cliente.setMesActual(lectura.leerString("Mes de registro"));
+        cliente.setMesActual(lectura.leerString("Mes de registro en formato de numero: Enero(01), Febrero(02)...:"));
         cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (Si/No):"));
         cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
         cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, Cuantos minutos a la semana?:"));
         listaClientes.add(cliente);
         PlanEntrenamiento plan = new PlanEntrenamiento(cliente); // Usa la info del cliente para el plan
-        planesPorCliente.put(cliente, plan);
+        //planesPorCliente.put(cliente, plan);
         listaPlanes.add(plan);
         return cliente;
     }
@@ -134,7 +132,7 @@ public class GestionarCliente {
         }
     }
      
-    public void estadoDeuda() {
+    /*public void estadoDeuda() {
     Scanner entrada = new Scanner(System.in);
     System.out.print("Ingrese identificacion para buscar: ");
     String identificacion = entrada.nextLine();
@@ -158,14 +156,14 @@ public class GestionarCliente {
                 System.out.println("No tiene derecho al gimnasio hasta pagar la deuda.");
             } else {
                 System.out.println("Mes: " + mes);
-                System.out.println("Está al día con los pagos.");
+                System.out.println("Estas al dia con los pagos.");
                 System.out.println("Tiene derecho al gimnasio.");
             }
         } else {
             System.out.println("En el mes " + mes + " no tiene deuda registrada.");
         }
     }
-}
+}*/
 
     public void mostrarPlanesDeEntrenamiento() {
     if (listaClientes.isEmpty()) {

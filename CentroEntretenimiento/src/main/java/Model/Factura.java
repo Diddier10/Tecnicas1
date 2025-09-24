@@ -19,5 +19,8 @@ public class Factura {
     Servicio servicio;
     String formaDePago;
     Empleado cajero;
+
+    public Factura() {
+    }
     
 }

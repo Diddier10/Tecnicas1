@@ -4,7 +4,6 @@
  */
 package Control;
 
-import Model.Cliente;
 import Model.Empleado;
 import Util.Lectura;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import java.util.Scanner;
 public class GestionarEmpleados {
     ArrayList<Empleado> listaEmpleados;
     private Lectura lectura = new Lectura();
+   
     public Empleado crearEmpleado(){
         Empleado empleado = new Empleado();
         System.out.println("A continuacion los datos del empleado:");
@@ -47,7 +47,7 @@ public class GestionarEmpleados {
     }
     
     public void mostrarEmpleados() {
-        if (listaEmpleados.size() > 0) {
+        if (!listaEmpleados.isEmpty()) {
             for (Empleado empleado : listaEmpleados) {
                 System.out.println(empleado);
             }
@@ -60,7 +60,7 @@ public class GestionarEmpleados {
         Collections.sort(listaEmpleados, (Empleado empleado1, Empleado empleado2)
                  -> empleado1.getNombres().compareTo(empleado2.getNombres()));
         mostrarEmpleados();
-    }   
+    }
     /*public Cliente entrenadorCliente(){
         
     }*/
