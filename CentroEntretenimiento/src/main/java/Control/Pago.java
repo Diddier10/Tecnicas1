@@ -7,15 +7,15 @@ package Control;
 import java.util.Scanner;
 
 /**
- * permite compartir comportamientos entre otras clases
- * Constantes 
- * Metdodos
- * templates o cascarones, prefacs, moldes para compartir comportamientos
  * 
- * @author Alima
+ *
+ * @author Ali Mateo
  */
 public interface Pago {
+
     String pagoEfectivo(Scanner sc);
+
     String pagoCheque(Scanner sc);
+
     String pagoTarjeta(Scanner sc);
 }

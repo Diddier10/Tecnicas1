@@ -3,27 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Control;
+
 import Util.Lectura;
 import Model.Cliente;
-import Model.Persona;
 import Model.PlanEntrenamiento;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Alimateo Garshasebi
  */
 public class GestionarCliente {
+
     ArrayList<Cliente> listaClientes;
     ArrayList<PlanEntrenamiento> listaPlanes;
-    private Lectura lectura = new Lectura();
-    Persona persona= new Persona();
+    Lectura lectura = new Lectura();
     public GestionarCliente(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes) {
         this.listaClientes = listaClientes;
-        this.listaPlanes=listaPlanes;
+        this.listaPlanes = listaPlanes;
     }
-    public Cliente crearCliente(){
+
+    public Cliente crearCliente() {
         Cliente cliente = new Cliente();
         System.out.println("A continuacion los datos del cliente:");
         cliente.setIdentificación(lectura.leerString("Identificacion:"));
@@ -32,77 +32,92 @@ public class GestionarCliente {
         cliente.setDirección(lectura.leerString("Direccion:"));
         cliente.setTelefono(lectura.leerInt("Telefono:"));
         cliente.setEstratoSE(lectura.leerInt("Estrato:"));
-        cliente.setTrabajaEn(lectura.leerString("Donde trabajas actualmente?: "));
         cliente.setPeso(lectura.leerFloat("Peso:"));
+        cliente.setTrabajaEn(lectura.leerString("Donde trabajas actualmente?: "));
         cliente.setPlanEntrenamiento(lectura.leerString("Que plan de entrenamiento sigues hasta hoy?:"));
-        cliente.setMesActual(lectura.leerString("Mes de registro en formato de numero: Enero(01), Febrero(02)...:"));
-        cliente.setPracticaActividadFisica(lectura.leerBoolean("Realiza actividad fisica? (Si/No):"));
-        cliente.setActividadFisica(lectura.leerString("Que tipo de Actividad fisica realiza?: "));
-        cliente.setCantidadAFMinutos(lectura.leerInt("Si realiza actividad fisica, Cuantos minutos a la semana?:"));
+        cliente.setMesActual(lectura.leerString("Mes de registro:"));
+        boolean realizaActividad = lectura.leerBoolean("Realiza actividad fisica? (Si/No): ");
+        cliente.setPracticaActividadFisica(realizaActividad);
+        if (realizaActividad) {
+            String tipoActividad = lectura.leerString("¿Que tipo de actividad fisica realiza?: ");
+            int minutos = lectura.leerInt("Cuantos minutos a la semana?: ");
+            cliente.setActividadFisica(tipoActividad);
+            cliente.setCantidadAFMinutos(minutos);
+        } else {
+            cliente.setActividadFisica("Ninguna");
+            cliente.setCantidadAFMinutos(0);
+        }
         listaClientes.add(cliente);
-        PlanEntrenamiento plan = new PlanEntrenamiento(cliente); // Usa la info del cliente para el plan
-        //planesPorCliente.put(cliente, plan);
+        PlanEntrenamiento plan = new PlanEntrenamiento(cliente);
         listaPlanes.add(plan);
         return cliente;
     }
-    /*public Cliente crearCliente(String mensaje){
-        Cliente cliente = new Cliente();
-        System.out.println(mensaje);
-        cliente.setIdentificación(lectura.leerString("Identificación: "));
-        listaClientes.add(cliente);
-        return cliente;
-    }*/
+
     public void buscarCliente() {
-        String identificacion;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese DNI a buscar: ");
-        identificacion = entrada.next();
-        Cliente cliente = new Cliente(identificacion);
-        indice = listaClientes.indexOf(cliente);
-        System.out.println("Estoy buscando una persona con dni=1"+indice);
-        if (indice != -1) { //Lógica negativa.
-            persona = listaClientes.get(indice);
-            System.out.println(persona);
+        if (listaClientes.isEmpty()) {
+            System.out.println("No existen clientes registrados.");
+            return;
+        }
+
+        String identificacion = lectura.leerString("Ingrese la identificacion del cliente que desea buscar: ");
+
+        Cliente clienteEncontrado = null;
+
+        for (Cliente c : listaClientes) {
+            if (c.getIdentificación().equalsIgnoreCase(identificacion)) {
+                clienteEncontrado = c;
+                break;
+            }
+        }
+
+        if (clienteEncontrado != null) {
+            System.out.println("\nCliente encontrado:");
+            System.out.println("Nombre: " + clienteEncontrado.getNombres() + " " + clienteEncontrado.getApellidos());
+            System.out.println("Identificacion: " + clienteEncontrado.getIdentificación());
+            System.out.println("Actividad fisica: " + clienteEncontrado.getActividadFisica());
+            System.out.println("Peso: " + clienteEncontrado.getPeso() + " kg");
+            System.out.println("Mes actual: " + clienteEncontrado.getMesActual());
+            System.out.println("Deuda: $" + clienteEncontrado.getDeuda());
         } else {
-            System.out.println("La persona no se encuentra");
+            System.out.println("No se encontro ningun cliente con la identificacion: " + identificacion);
         }
     }
-    
-    public void buscarCliente(String basura) {
-        String nombres, apellidos;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese los nombres: ");
-        nombres = entrada.next();
-        System.out.println("Ingrese los apellidos:");
-        apellidos = entrada.next();
-        Cliente cliente = new Cliente(nombres, apellidos); //Errror, constructor nombre no definido 
-        indice = listaClientes.indexOf(persona);
-        if (indice != -1) { //Lógica negativa.
-            persona = listaClientes.get(indice);
-            System.out.println(persona);
-        } else {
-            System.out.println("La persona no se encuentra");
-        }
-    }
-    
+
     public void eliminarCliente() {
-        String identificación;
-        int indice;
-        Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese identificacion para eliminar: ");
-        identificación = entrada.next();
-        Cliente cliente = new Cliente(identificación);
-        indice = listaClientes.indexOf(persona);
-        if (indice != -1) {
-            persona = listaClientes.remove(indice);
-            System.out.println("Persona eliminada: " + persona);
+        if (listaClientes.isEmpty()) {
+            System.out.println("No existen clientes registrados.");
+            return;
+        }
+
+        String identificacion = lectura.leerString("Ingrese la identificacion del cliente que desea eliminar: ");
+
+        Cliente clienteAEliminar = null;
+
+        for (Cliente c : listaClientes) {
+            if (c.getIdentificación().equalsIgnoreCase(identificacion)) {
+                clienteAEliminar = c;
+                break;
+            }
+        }
+
+        if (clienteAEliminar != null) {
+            System.out.println("\nCliente encontrado:");
+            System.out.println("Nombre: " + clienteAEliminar.getNombres() + " " + clienteAEliminar.getApellidos());
+            System.out.println("Actividad fisica: " + clienteAEliminar.getActividadFisica());
+            System.out.println("Peso: " + clienteAEliminar.getPeso() + " kg");
+
+            boolean confirmar = lectura.leerBoolean("Esta seguro de que desea eliminar a este cliente? (Si/No): ");
+            if (confirmar) {
+                listaClientes.remove(clienteAEliminar);
+                System.out.println("Cliente eliminado exitosamente.");
+            } else {
+                System.out.println("Operacion cancelada. El cliente no fue eliminado.");
+            }
         } else {
-            System.out.println("La persona no se encuentra");
+            System.out.println("No se encontro ningun cliente con la identificacion: " + identificacion);
         }
     }
-    
+
     public void mostrarClientes() {
         if (!listaClientes.isEmpty()) {
             for (Cliente cliente : listaClientes) {

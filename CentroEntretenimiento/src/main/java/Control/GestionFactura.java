@@ -2,59 +2,58 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Control;
 
 import Model.Cliente;
 import Model.Empleado;
 import Model.Factura;
 import Model.PlanEntrenamiento;
+import Util.Lectura;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionFactura implements Pago {
+
     ArrayList<Cliente> listaClientes;
     ArrayList<PlanEntrenamiento> listaPlanes;
     ArrayList<Factura> listaFacturas;
     int contadorFacturas;
+    double valorPagado;
+
+    public double getValorPagado() {
+        return valorPagado;
+    }
 
     public GestionFactura(ArrayList<Cliente> listaClientes, ArrayList<PlanEntrenamiento> listaPlanes, ArrayList<Factura> listaFactura) {
         this.listaClientes = listaClientes;
         this.listaPlanes = listaPlanes;
         this.listaFacturas = new ArrayList<>();
-        this.contadorFacturas = 0; 
+        this.contadorFacturas = 0;
     }
 
     public void crearFactura(Cliente cliente, Empleado cajero) {
         Scanner sc = new Scanner(System.in);
-        int numeroFactura = ++contadorFacturas; 
+        int numeroFactura = ++contadorFacturas;
         String mesPaga = cliente.getMesActual();
-        double valorPagado = cliente.getDeuda(); 
+        Lectura lectura = new Lectura();
 
-        System.out.println("Seleccione método de pago:");
+        System.out.println("Seleccione metodo de pago:");
         System.out.println("1) Efectivo");
         System.out.println("2) Cheque");
         System.out.println("3) Tarjeta");
-        int opcion = sc.nextInt();
-        sc.nextLine(); 
+        int opcion = lectura.leerInt("Ingrese una opcion (1-3): ");
 
         String formaDePago = "";
 
         switch (opcion) {
-            case 1:
-                formaDePago = pagoEfectivo(sc);
-                break;
-            case 2:
-                formaDePago = pagoCheque(sc);
-                break;
-            case 3:
-                formaDePago = pagoTarjeta(sc);
-                break;
-            default:
-                System.out.println("Opción inválida, se cancela la factura.");
+            case 1 -> formaDePago = pagoEfectivo(sc);
+            case 2 -> formaDePago = pagoCheque(sc);
+            case 3 -> formaDePago = pagoTarjeta(sc);
+            default -> {
+                System.out.println("Opcion invalida, se cancela la factura.");
                 return;
+            }
         }
-
         Factura factura = new Factura(
                 numeroFactura,
                 cliente,
@@ -67,17 +66,15 @@ public class GestionFactura implements Pago {
         listaFacturas.add(factura);
         cliente.setDeuda(0);
 
-        System.out.println("\n✔ Factura generada con éxito:");
-        System.out.println("Número: " + numeroFactura);
+        System.out.println("\nFactura generada con exito:");
+        System.out.println("Numero: " + numeroFactura);
         System.out.println("Cliente: " + cliente.getNombres() + " " + cliente.getApellidos());
-        System.out.println("Valor pagado: $" + valorPagado);
         System.out.println("Forma de pago: " + formaDePago);
-        System.out.println("Atendido por: " + cajero.getNombres());
     }
 
     public Cliente estadoDeuda() {
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese identificación para buscar: ");
+        System.out.print("Ingrese identificacion para buscar: ");
         String identificacion = entrada.nextLine();
 
         Cliente clienteEncontrado = null;
@@ -89,7 +86,7 @@ public class GestionFactura implements Pago {
         }
 
         if (clienteEncontrado == null) {
-            System.out.println("Cliente con identificación " + identificacion + " no fue encontrado.");
+            System.out.println("Cliente con identificacion " + identificacion + " no fue encontrado.");
         } else {
             System.out.print("Ingrese el mes a consultar: ");
             String mes = entrada.nextLine();
@@ -103,7 +100,7 @@ public class GestionFactura implements Pago {
                     return clienteEncontrado;
                 } else {
                     System.out.println("Mes: " + mes);
-                    System.out.println("Estás al día con los pagos.");
+                    System.out.println("Estas al día con los pagos.");
                     System.out.println("Tiene derecho al gimnasio.");
                 }
             } else {
@@ -112,11 +109,12 @@ public class GestionFactura implements Pago {
         }
         return clienteEncontrado;
     }
+
     public void arqueoCaja() {
         if (listaFacturas.isEmpty()) {
-            System.out.println("No se han registrado facturas aún.");
+            System.out.println("No se han registrado facturas aun.");
             return;
-    }
+        }
         double totalRecaudado = 0;
         System.out.println("\n===== Arqueo de Caja =====");
         for (Factura f : listaFacturas) {
@@ -124,18 +122,19 @@ public class GestionFactura implements Pago {
             System.out.println("Valor pagado: $" + f.getValorpagado());
             System.out.println("Forma de pago: " + f.getFormaDePago());
             System.out.println("------------------------------------");
-        totalRecaudado += f.getValorpagado();
+            totalRecaudado += f.getValorpagado();
         }
 
-    System.out.println("Total recaudado: $" + totalRecaudado);
-    System.out.println("===== Fin del arqueo =====\n");
-}
+        System.out.println("Total recaudado: $" + totalRecaudado);
+        System.out.println("===== Fin del arqueo =====\n");
+    }
 
     @Override
     public String pagoEfectivo(Scanner sc) {
         System.out.print("Ingrese el valor a pagar: ");
         double valor = sc.nextDouble();
         sc.nextLine();
+        this.valorPagado = valor;
         return "Efectivo - Valor: $" + valor;
     }
 
@@ -143,23 +142,25 @@ public class GestionFactura implements Pago {
     public String pagoCheque(Scanner sc) {
         System.out.print("Banco del cheque: ");
         String banco = sc.nextLine();
-        System.out.print("Número del cheque: ");
+        System.out.print("Numero del cheque: ");
         String numero = sc.nextLine();
-        return "Cheque - Banco: " + banco + ", Número: " + numero;
+        System.out.print("Ingrese el valor a descontar del cheque: ");
+        double valor = sc.nextDouble();
+        sc.nextLine();
+        this.valorPagado = valor;
+        return "Cheque - Banco: " + banco + ", Numero: " + numero + ",Valor descontado: " + valor;
     }
 
     @Override
     public String pagoTarjeta(Scanner sc) {
         System.out.print("Ingrese el banco: ");
         String banco = sc.nextLine();
-        System.out.print("Ingrese el número de tarjeta: ");
+        System.out.print("Ingrese el numero de tarjeta: ");
         String numero = sc.nextLine();
         System.out.print("Ingrese el valor a pagar: ");
         double valor = sc.nextDouble();
         sc.nextLine();
+        this.valorPagado = valor;
         return "Tarjeta - Banco: " + banco + ", Tarjeta: " + numero + ", Valor: $" + valor;
     }
 }
-
-
-

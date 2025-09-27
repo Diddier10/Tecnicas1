@@ -9,9 +9,10 @@ package Model;
  * @author Alima
  */
 public class PlanEntrenamiento {
+
     private Cliente cliente;
     private String rutina;
-    private int duraciónDias=30;
+    private int duraciónDias = 30;
 
     public PlanEntrenamiento() {
     }
@@ -24,7 +25,7 @@ public class PlanEntrenamiento {
     public PlanEntrenamiento(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -55,7 +56,7 @@ public class PlanEntrenamiento {
         sb.append("PlanEntrenamiento para:{").append(cliente.getNombres()).append("\nPeso: ").append(cliente.getPeso()).append("\nActividad física: ").append(cliente.getActividadFisica());
         sb.append("cliente=").append(cliente);
         sb.append(", rutina=").append(rutina);
-        sb.append(", duraci\u00f3nDias=").append(duraciónDias);
+        sb.append(", duracionDias=").append(duraciónDias);
         sb.append('}');
         return sb.toString();
     }

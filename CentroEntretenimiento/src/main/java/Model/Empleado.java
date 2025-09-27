@@ -9,6 +9,7 @@ package Model;
  * @author Alima
  */
 public class Empleado extends Persona {
+
     private int salario;
     private int antiguedad;
     private String cargo;
@@ -89,13 +90,4 @@ public class Empleado extends Persona {
         return sb.toString();
     }
 
-    
-    
-   
-    
-    
-
-    
-    
-    
 }

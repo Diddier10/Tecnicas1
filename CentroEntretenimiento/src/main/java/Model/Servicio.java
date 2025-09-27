@@ -9,6 +9,7 @@ package Model;
  * @author Ali
  */
 public class Servicio {
+
     private String nombres;
     private int codigo;
     private String duracion;
@@ -31,7 +32,6 @@ public class Servicio {
     public Servicio(int id) {
         this.id = id;
     }
-    
 
     public String getNombres() {
         return nombres;
@@ -88,12 +88,11 @@ public class Servicio {
         sb.append("nombres=").append(nombres);
         sb.append(", codigo=").append(codigo);
         sb.append(", duracion=").append(duracion);
-        sb.append(", descripci\u00f3n=").append(descripción);
+        sb.append(", descripcion=").append(descripción);
         sb.append(", precio=").append(precio);
         sb.append(", id=").append(id);
         sb.append('}');
         return sb.toString();
     }
-    
-    
+
 }

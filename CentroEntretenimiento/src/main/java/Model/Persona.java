@@ -9,6 +9,7 @@ package Model;
  * @author Alima
  */
 public class Persona {
+
     private String identificación;
     private String apellidos;
     private String nombres;
@@ -49,8 +50,6 @@ public class Persona {
         this.apellidos = apellidos;
         this.nombres = nombres;
     }
-    
-    
 
     public String getIdentificación() {
         return identificación;
@@ -120,13 +119,13 @@ public class Persona {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Persona{");
-        sb.append("identificaci\u00f3n=").append(identificación);
+        sb.append("identificacion=").append(identificación);
         sb.append(", apellidos=").append(apellidos);
         sb.append(", nombres=").append(nombres);
         sb.append(", sexo=").append(sexo);
         sb.append(", edad=").append(edad);
         sb.append(", peso=").append(peso);
-        sb.append(", direcci\u00f3n=").append(dirección);
+        sb.append(", direccion=").append(dirección);
         sb.append(", telefono=").append(telefono);
         sb.append('}');
         return sb.toString();

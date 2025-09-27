@@ -4,18 +4,17 @@
  */
 package Model;
 
-import Control.Pago;
-
 /**
  *
  * @author Alima
  */
 public class Factura {
+
     private String fecha;
     private int numeroFactura;
     private Cliente cliente;
     private String mesPaga;
-    private double valorpagado;
+    private double valorPagado;
     private Servicio servicio;
     private String formaDePago;
     private Empleado cajero;
@@ -23,23 +22,23 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(String fecha, int numeroFactura, Cliente cliente, String mesPaga, double valorpagado, String formaDePago, Empleado cajero) {
+    public Factura(String fecha, int numeroFactura, Cliente cliente, String mesPaga, double valorPagado, String formaDePago, Empleado cajero) {
         this.fecha = fecha;
         this.numeroFactura = numeroFactura;
         this.cliente = cliente;
         this.mesPaga = mesPaga;
-        this.valorpagado = valorpagado;
+        this.valorPagado = valorPagado;
         this.servicio = servicio;
         this.formaDePago = formaDePago;
         this.cajero = cajero;
     }
 
-    public Factura(int numeroFactura, Cliente cliente, String fecha, double valorpagado, String mesPaga, Empleado cajero) {
+    public Factura(int numeroFactura, Cliente cliente, String fecha, double valorPagado, String mesPaga, Empleado cajero) {
         this.fecha = fecha;
         this.numeroFactura = numeroFactura;
         this.cliente = cliente;
         this.mesPaga = mesPaga;
-        this.valorpagado = valorpagado;
+        this.valorPagado = valorPagado;
         this.formaDePago = formaDePago;
         this.cajero = cajero;
     }
@@ -85,11 +84,11 @@ public class Factura {
     }
 
     public double getValorpagado() {
-        return valorpagado;
+        return valorPagado;
     }
 
     public void setValorpagado(double valorpagado) {
-        this.valorpagado = valorpagado;
+        this.valorPagado = valorPagado;
     }
 
     public Servicio getServicio() {
@@ -116,12 +115,12 @@ public class Factura {
         sb.append(", numeroFactura=").append(numeroFactura);
         sb.append(", cliente=").append(cliente);
         sb.append(", mesPaga=").append(mesPaga);
-        sb.append(", valorpagado=").append(valorpagado);
+        sb.append(", valorpagado=").append(valorPagado);
         sb.append(", servicio=").append(servicio);
         sb.append(", formaDePago=").append(formaDePago);
         sb.append(", cajero=").append(cajero);
         sb.append('}');
         return sb.toString();
     }
-    
+
 }

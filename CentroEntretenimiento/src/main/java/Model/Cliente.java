@@ -4,14 +4,12 @@
  */
 package Model;
 
-import java.time.format.TextStyle;
-import java.util.Locale;
-
 /**
  *
  * @author Alima
  */
 public class Cliente extends Persona {
+
     private int estratoSE;
     private String trabajaEn;
     private Boolean practicaActividadFisica;
@@ -22,6 +20,7 @@ public class Cliente extends Persona {
     private double deuda;
     private PlanEntrenamiento planentrenamiento;
     private String mesActual;
+
     public Cliente() {
     }
 
@@ -36,8 +35,8 @@ public class Cliente extends Persona {
         this.deuda = deuda;
     }
 
-    public Cliente( String nombres, String apellidos) {
-        super( apellidos, nombres);
+    public Cliente(String nombres, String apellidos) {
+        super(apellidos, nombres);
     }
 
     public Cliente(String identificación) {
@@ -119,29 +118,24 @@ public class Cliente extends Persona {
     public String getMesActual() {
         return mesActual;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Cliente{");
-        sb.append("estratoSE=").append(estratoSE);
-        sb.append(", trabajaEn=").append(trabajaEn);
-        sb.append(", practicaActividadFisica=").append(practicaActividadFisica);
-        sb.append(", actividadFisica=").append(actividadFisica);
-        sb.append(", cantidadAFMinutos=").append(cantidadAFMinutos);
-        sb.append(", planEntrenamiento=").append(planEntrenamiento);
-        sb.append(", tiempoPlan=").append(tiempoPlan);
-        sb.append(", deuda=").append(deuda);
-        sb.append('}');
+        sb.append("\n===== DATOS DEL CLIENTE =====\n");
+        sb.append("Estrato socioeconomico: ").append(estratoSE).append("\n");
+        sb.append("Trabajo: ").append(trabajaEn).append("\n");
+        sb.append("Practica actividad fisica: ").append(practicaActividadFisica ? "Sí" : "No").append("\n");
+        sb.append("Actividad fisica: ").append(actividadFisica).append("\n");
+        sb.append("Minutos a la semana: ").append(cantidadAFMinutos).append("\n");
+        sb.append("Plan de entrenamiento: ").append(planEntrenamiento).append("\n");
+        sb.append("Duracion del plan: ").append(tiempoPlan).append(" días\n");
+        sb.append("Deuda: $").append(deuda).append("\n");
+        sb.append("=============================\n");
         return sb.toString();
-    }   
+    }
 
     public void setMesActual(String mesActual) {
         this.mesActual = mesActual;
     }
-}   
-    
-    
-    
-    
-
+}
